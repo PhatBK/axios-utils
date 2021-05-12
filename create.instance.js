@@ -17,7 +17,7 @@ const setAxiosInstance = (timeout) => {
     /**
      * create axios instance
      * */
-    axiosInstanceTest = axios.create({
+    axiosInstance = axios.create({
         baseURL: BASE_TEST,
         timeout: timeout,
         withCredentials: true,
@@ -26,7 +26,7 @@ const setAxiosInstance = (timeout) => {
     /**
      * add value before for request
      * */
-    axiosInstanceTest.interceptors.request.use(function (config) {
+    axiosInstance.interceptors.request.use(function (config) {
         config.headers["Request-Id"] = ""; // generate request id
         config.requestTime = Date.now();
         return config;
@@ -35,7 +35,7 @@ const setAxiosInstance = (timeout) => {
     /**
      * add after for response
      * */
-    axiosInstanceTest.interceptors.response.use(
+    axiosInstance.interceptors.response.use(
         response => successHandler(response),
         error => errorHandler(error)
     )
